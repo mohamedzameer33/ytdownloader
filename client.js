@@ -1,6 +1,8 @@
 (() => {
   'use strict';
 
+  // Browser-only interaction bundle. The filename intentionally avoids Vercel's app.js server convention.
+
   const form = document.querySelector('#downloadForm');
   const input = document.querySelector('#videoUrl');
   const urlField = document.querySelector('.url-field');

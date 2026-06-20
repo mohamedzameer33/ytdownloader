@@ -26,4 +26,4 @@ The files under `api/` are stateless Vercel Functions. Download tokens are signe
 
 ## Security
 
-Never put `X-RapidAPI-Key` in `app.js`, `index.html`, or any browser-delivered file. Regenerate the key that appeared in the shared screenshot before connecting the live API.
+Never put `X-RapidAPI-Key` in `client.js`, `index.html`, or any browser-delivered file. Regenerate the key that appeared in the shared screenshot before connecting the live API.

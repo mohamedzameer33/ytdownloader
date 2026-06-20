@@ -5,3 +5,5 @@
 qa
 design-qa.md
 local-server.cjs
+app.js
+server.js
