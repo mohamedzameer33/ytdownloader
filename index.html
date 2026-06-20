@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Flash Downloader Free — a fast, simple YouTube video downloader.">
+  <title>Flash Downloader Free</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header border-bottom">
+    <nav class="container-xxl d-flex align-items-center justify-content-between py-3" aria-label="Main navigation">
+      <a class="brand d-inline-flex align-items-center gap-2 text-decoration-none" href="#top" aria-label="Flash Downloader Free home">
+        <span class="brand-mark" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
+        <span><strong>Flash</strong> Downloader Free</span>
+      </a>
+      <span id="apiBadge" class="demo-badge"><span class="status-dot" aria-hidden="true"></span><span>Checking API</span></span>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero container-xxl text-center">
+      <div class="hero-copy mx-auto">
+        <p class="eyebrow mb-3">Fast. Private. Effortless.</p>
+        <h1>Download <span>YouTube</span> videos. Fast. Free. Simple.</h1>
+        <p class="lead-copy mx-auto mt-3 mb-0">Paste a YouTube link below and prepare your video in seconds.</p>
+      </div>
+
+      <form id="downloadForm" class="url-form mx-auto" novalidate>
+        <div class="url-field">
+          <i class="bi bi-link-45deg" aria-hidden="true"></i>
+          <input id="videoUrl" name="videoUrl" type="url" inputmode="url" autocomplete="url" aria-label="YouTube video URL" aria-describedby="urlHelp" placeholder="Paste a YouTube link here" required>
+          <button id="pasteButton" class="paste-button" type="button" aria-label="Paste from clipboard">Paste</button>
+        </div>
+        <button id="analyzeButton" class="btn btn-flash" type="submit">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <span>Analyze video</span>
+        </button>
+      </form>
+      <div id="urlHelp" class="form-feedback mx-auto" aria-live="polite"></div>
+
+      <div class="trust-row d-flex flex-wrap justify-content-center">
+        <div class="trust-item">
+          <i class="bi bi-person-check" aria-hidden="true"></i>
+          <span><strong>No login required</strong><small>Simple, anonymous access</small></span>
+        </div>
+        <span class="trust-divider d-none d-sm-block" aria-hidden="true"></span>
+        <div class="trust-item">
+          <i class="bi bi-shield-check" aria-hidden="true"></i>
+          <span><strong>Nothing stored</strong><small>Your links stay private</small></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="pipelineSection" class="pipeline-section container-xxl" hidden aria-live="polite" aria-label="Download preparation progress">
+      <div class="pipeline-grid">
+        <div class="stage is-active" data-stage="0">
+          <span class="stage-circle"><i class="bi bi-link-45deg"></i></span>
+          <span class="stage-label">Checking link</span>
+        </div>
+        <span class="stage-line" aria-hidden="true"></span>
+        <div class="stage" data-stage="1">
+          <span class="stage-circle"><i class="bi bi-search"></i></span>
+          <span class="stage-label">Fetching info</span>
+        </div>
+        <span class="stage-line" aria-hidden="true"></span>
+        <div class="stage" data-stage="2">
+          <span class="stage-circle"><i class="bi bi-sliders"></i></span>
+          <span class="stage-label">Preparing</span>
+        </div>
+        <span class="stage-line" aria-hidden="true"></span>
+        <div class="stage" data-stage="3">
+          <span class="stage-circle"><i class="bi bi-check-lg"></i></span>
+          <span class="stage-label">Ready</span>
+        </div>
+      </div>
+      <p id="currentStage" class="current-stage mb-0">Checking your link…</p>
+    </section>
+
+    <section id="resultSection" class="result-section container-xxl" hidden aria-labelledby="resultTitle">
+      <div class="result-heading d-flex justify-content-between align-items-end gap-3">
+        <div>
+          <p class="eyebrow mb-1">Video ready</p>
+          <h2 id="resultTitle" class="mb-0">Choose your download</h2>
+        </div>
+        <button id="newLinkButton" class="btn btn-link new-link-button" type="button">Try another link</button>
+      </div>
+
+      <div class="result-layout">
+        <div class="thumbnail-wrap">
+          <img id="videoThumbnail" src="assets/mountain-video-thumbnail.png" alt="Video preview" width="640" height="360">
+          <span id="videoDuration" class="duration">00:00</span>
+        </div>
+        <div class="video-details">
+          <h3 id="videoTitle">YouTube video</h3>
+          <p id="videoChannel" class="channel mb-1">YouTube</p>
+          <p id="videoMetadata" class="metadata mb-0">Ready to download</p>
+          <div class="download-options">
+            <div>
+              <label class="form-label" for="formatSelect">Format</label>
+              <select id="formatSelect" class="form-select">
+                <option value="video">Video</option>
+                <option value="audio">Audio</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="qualitySelect">Quality</label>
+              <select id="qualitySelect" class="form-select">
+                <option value="">Select quality</option>
+              </select>
+            </div>
+            <button id="downloadButton" class="btn btn-flash download-button" type="button">
+              <i class="bi bi-download" aria-hidden="true"></i>
+              <span>Download</span>
+            </button>
+          </div>
+          <p id="formatHint" class="format-hint mb-0">Select a downloadable format.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer border-top">
+    <div class="container-xxl d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+      <p class="mb-0">© 2026 Flash Downloader Free. Mohamed Zameer.</p>
+      <p class="mb-0 footer-note">Download only content you have permission to use.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="appToast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+      <div class="toast-header">
+        <span class="toast-mark" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
+        <strong class="me-auto">Flash Downloader Free</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div id="toastMessage" class="toast-body"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

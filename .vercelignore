@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+.vercel
+qa
+design-qa.md
+server.js
