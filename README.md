@@ -7,7 +7,7 @@ A responsive YouTube downloader built with HTML, CSS, JavaScript, Bootstrap 5, B
 1. Install Node.js if it is not already installed.
 2. Copy `.env.example` to `.env`.
 3. Put your regenerated RapidAPI key in `.env` as `RAPIDAPI_KEY=...`.
-4. From this folder, run `node server.js`.
+4. From this folder, run `npm run dev`.
 5. Open `http://localhost:4173`.
 
 The local server calls the RapidAPI `Get Video Details` endpoint once per analyzed link. It returns safe metadata plus short-lived local download tokens; the browser never receives the RapidAPI key.

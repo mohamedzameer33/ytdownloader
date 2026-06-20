@@ -4,4 +4,4 @@
 .vercel
 qa
 design-qa.md
-server.js
+local-server.cjs
